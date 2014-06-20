@@ -63,10 +63,32 @@ class AdjacencyMatrix:
 			self.matrix[node][i] = 0
 	
 	def remove_nodes_edges(self, nodes):
-		"Removes the edges from a list of nodes"
+		"Removes the edges from a set of nodes"
 
 		map(self.remove_node_edges, nodes)
+	
+	def special_path(self, nodes, start, end):
+		"""
+		Retourne un chemin de start a end ne passant pas par certains noeuds.
+		Prend un set de nodes en argument.
+		"""
 
+		matrix_cpy = copy.deepcopy(self)
+		matrix_cpy.remove_nodes_edges(nodes)
+		return matrix_cpy.shortest_path(start, end)
+
+	def get_paths(self, nb_ants, start, end):
+		"""
+		Retourne une liste de chemins que prendront les fourmis.
+		"""
+	
+		paths = [self.shortest_path(start, end)]
+		next_path = self.special_path(set(paths[-1][1:-1]))
+		if need_another_path(len(path[-1])):
+			# a finir
+
+
+	
 if __name__ == "__main__":
 	mult_paths = []
 	f = open("nodes.txt", "r")
