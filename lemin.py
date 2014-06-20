@@ -1,5 +1,5 @@
 import copy
-import runningMouse
+from running_mouse import *
 
 def my_max(a, b):
 	"Defines the max between two lists and between a list and a scalar"
@@ -78,5 +78,4 @@ if __name__ == "__main__":
 		path = matrix.shortest_path(0,1)
 		if path:
 			mult_paths.append(path)
-	print mult_paths
-	
+	lets_run(mult_paths, 5)
