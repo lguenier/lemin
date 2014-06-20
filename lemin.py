@@ -1,4 +1,5 @@
 import copy
+import runningMouse
 
 def my_max(a, b):
 	"Defines the max between two lists and between a list and a scalar"
@@ -67,17 +68,15 @@ class AdjacencyMatrix:
 		map(self.remove_node_edges, nodes)
 
 if __name__ == "__main__":
-	path_len = []
+	mult_paths = []
 	f = open("nodes.txt", "r")
 	matrix = AdjacencyMatrix.from_string(f.read())
 	path =  matrix.shortest_path(0,1)
-	print path
-	path_len.append(len(path[1:-1]))
-	print path_len
+	mult_paths.append(path)
 	while path:
 		matrix.remove_nodes_edges(path[1:-1])
 		path = matrix.shortest_path(0,1)
 		if path:
-			print path
-			path_len.append(len(path[1:-1]))
-			print path_len
+			mult_paths.append(path)
+	print mult_paths
+	
